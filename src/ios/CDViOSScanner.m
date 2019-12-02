@@ -44,9 +44,9 @@
       //Open scanner.
       _scannerOpen = YES;
       self.cameraViewController = [[CameraViewController alloc] init];
-      
+        self.cameraViewController.modalPresentationStyle = UIModalPresentationFullScreen;
       self.cameraViewController.delegate = self;
-      
+
       //Provide settings to the camera view.
       NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
       f.numberStyle = NSNumberFormatterDecimalStyle;
@@ -54,10 +54,10 @@
       self.cameraViewController.scanAreaWidth = (CGFloat)[[command argumentAtIndex:1 withDefault:@.5] floatValue];
       self.cameraViewController.scanAreaHeight = (CGFloat)[[command argumentAtIndex:2 withDefault:@.7] floatValue];
       self.cameraViewController.barcodeFormats = barcodeFormats;
-      
+
       NSLog(@"Test %@, width: %f, height: %f, barcodeFormats: %@",[command.arguments objectAtIndex:2], self.cameraViewController.scanAreaWidth, self.cameraViewController.scanAreaHeight, self.cameraViewController.barcodeFormats);
-      
-      [self.viewController presentViewController:self.cameraViewController animated: NO completion:nil];
+
+        [self.viewController presentViewController:self.cameraViewController animated:NO completion:nil];
       _callback = command.callbackId;
     }
   });
